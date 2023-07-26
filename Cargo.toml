@@ -1,0 +1,17 @@
+[package]
+name = "udp-conditioner-proxy"
+version = "0.1.0"
+edition = "2021"
+authors = ["Kuba Jaroszewski <jakub.jaroszewski@gmail.com>"]
+description = "Simple UDP proxy to simulate network conditions"
+repository = "https://github.com/pierd/udp-conditioner-proxy"
+homepage = "https://github.com/pierd/udp-conditioner-proxy"
+keywords = ["networking", "udp"]
+categories = ["network-programming"]
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+flume = { version = "0.10", features = ["async"] }
+rand = "0.8.5"
+tokio = { version = "1.0", features = ["macros", "net", "process", "rt-multi-thread", "signal", "time"]}
