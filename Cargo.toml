@@ -1,6 +1,6 @@
 [package]
 name = "udp-conditioner-proxy"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 authors = ["Kuba Jaroszewski <jakub.jaroszewski@gmail.com>"]
 description = "Simple UDP proxy to simulate network conditions"
@@ -12,6 +12,7 @@ readme = "README.md"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
+clap = { version = "4.3.19", features = ["derive"] }
 flume = { version = "0.10", features = ["async"] }
 rand = "0.8.5"
 tokio = { version = "1.0", features = ["macros", "net", "process", "rt-multi-thread", "signal", "time"]}
