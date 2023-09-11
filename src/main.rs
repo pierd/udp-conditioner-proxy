@@ -72,7 +72,8 @@ async fn spawn_upstream_connection(
             recv_time,
         }) = upstream_rx.recv_async().await
         {
-            tokio::time::sleep_until((recv_time + delay_up + random_duration(max_jitter)).into()).await;
+            tokio::time::sleep_until((recv_time + delay_up + random_duration(max_jitter)).into())
+                .await;
             if sock.send_to(&data[..len], upstream).await.is_err() {
                 eprintln!("failed to send to {}", upstream);
                 break;
@@ -85,6 +86,9 @@ async fn spawn_upstream_connection(
 
 fn random_duration(max_duration: Duration) -> Duration {
     let max_micros = max_duration.as_micros() as u64;
+    if max_micros == 0 {
+        return Duration::from_micros(0);
+    }
     let micros = rand::thread_rng().gen_range(0..max_micros);
     Duration::from_micros(micros)
 }
@@ -198,7 +202,10 @@ async fn main() {
                 recv_time,
             }) = downstream_rx.recv_async().await
             {
-                tokio::time::sleep_until((recv_time + delay_down + random_duration(max_jitter)).into()).await;
+                tokio::time::sleep_until(
+                    (recv_time + delay_down + random_duration(max_jitter)).into(),
+                )
+                .await;
                 if sock.send_to(&data[..len], target).await.is_err() {
                     eprintln!("failed to send to {}", target);
                     break;
