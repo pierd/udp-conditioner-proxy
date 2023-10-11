@@ -1,6 +1,6 @@
 [package]
 name = "udp-conditioner-proxy"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["Kuba Jaroszewski <jakub.jaroszewski@gmail.com>"]
 description = "Simple UDP proxy to simulate network conditions"
